@@ -1,0 +1,7 @@
+{
+  "name": "growhub",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
