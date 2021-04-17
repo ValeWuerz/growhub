@@ -1,0 +1,26 @@
+ion-slides {
+    height: 100%;
+    margin-top: 2%;
+  }
+  
+  #plantname{
+      color: rgb(5, 5, 202);
+      font-size: 150%;
+      background-color: gray;
+      opacity: 80%;
+      position: fixed;
+      top: 0;
+      border-radius: 30px;
+      border-color: gray;
+      
+      border-style: solid;
+  }
+  ion-content {
+    --background: url() no-repeat center/cover fixed;
+  }
+  #plant{
+      position: absolute;
+      border-radius: 30px;
+      height: 30%;
+      top: 8%;
+  }
