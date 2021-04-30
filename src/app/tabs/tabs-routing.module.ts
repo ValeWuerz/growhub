@@ -9,8 +9,21 @@ const routes: Routes = [
     children: [
       {
         path: 'tab1',
+        children: [
+          {
+            path: '',
         loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+
+          },
+          {
+            path: ':plantId',
+            loadChildren: () => import('../plantinfo/plantinfo.module').then( m => m.PlantinfoPageModule)
+          },
+        ]
       },
+       
+      
+   
       {
         path: 'tab2',
         loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)

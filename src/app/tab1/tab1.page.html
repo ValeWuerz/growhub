@@ -11,9 +11,9 @@
   <ion-button shape="round" id="stuck" (click)="plantadd()"><ion-icon   name="add-outline"></ion-icon></ion-button>
 <ion-list>
   
-  <ion-item>
-  <ion-label id="lab">Frank</ion-label>
-    <img src="../../assets/plant.jpg" alt="">
+  <ion-item *ngFor="let plant of plants" [routerLink]="['./', plant.id]">
+    <ion-img [src]="plant.imageUrl"></ion-img>
+  <ion-label id="lab">{{plant.label}}</ion-label>
   </ion-item>
   <ion-item>
   <ion-label id="lab">Priscilla</ion-label>
