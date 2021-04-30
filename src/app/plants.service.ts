@@ -18,7 +18,14 @@ export class PlantsService {
     id:'p2',
     label: 'Dman',
     imageUrl: '../../assets/plant.jpg' 
-    }
+    },
+    {
+      id: 'p3',
+      label: 'Priscilla',
+      imageUrl: '../../assets/plant.jpg' 
+      
+    
+    },
     ]
   constructor() { }
 
