@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { PlantsService } from '../plants.service';
 import { PlantModel } from '../tab1/plant.model';
 
@@ -9,8 +10,10 @@ import { PlantModel } from '../tab1/plant.model';
   styleUrls: ['./plantinfo.page.scss'],
 })
 export class PlantinfoPage implements OnInit {
-loadedPlant: PlantModel;
-  constructor(private activatedRoute: ActivatedRoute, private plantservice: PlantsService) { }
+loadedPlant: PlantModel = {};
+rendered: false| true
+  constructor(private dbService: NgxIndexedDBService, private activatedRoute: ActivatedRoute, private plantservice: PlantsService) {
+   }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
@@ -19,7 +22,13 @@ loadedPlant: PlantModel;
         return;
       }
       const plantId = paramMap.get('plantId');
-      this.loadedPlant= this.plantservice.getPlant(plantId);
+      console.log(plantId)
+      this.dbService.getByKey('people', Number(plantId)).subscribe((plant) => {
+        this.loadedPlant= plant;
+        console.log(plant)
+        console.log(plantId)
+      })
+      
     });
   }
 

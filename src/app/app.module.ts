@@ -12,11 +12,11 @@ const dbConfig: DBConfig  = {
   name: 'MyDb',
   version: 1,
   objectStoresMeta: [{
-    store: 'people',
+    store: 'plants',
     storeConfig: { keyPath: 'id', autoIncrement: true },
     storeSchema: [
-      { name: 'name', keypath: 'name', options: { unique: false } },
-      { name: 'email', keypath: 'email', options: { unique: false } }
+      { name: 'name', keypath: 'name',  options: { unique: false } },
+      { name: 'bild', keypath: 'bild', options: { unique: false } }
     ]
   }]
 };

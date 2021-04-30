@@ -1,42 +1,31 @@
 import { Injectable } from '@angular/core';
+import { NgxIndexedDBService } from 'ngx-indexed-db';
+import { Observable } from 'rxjs';
 import { PlantModel } from './tab1/plant.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlantsService {
+allplants: Observable<PlantModel>;
+  plants: PlantModel[] = [    ];
+  loaded: Object={}
+  constructor(private dbService: NgxIndexedDBService) { }
+addplant(pflanzenname, bild){
+  this.dbService.add('people',{
+name: pflanzenname,
+bild: bild
 
-  plants: PlantModel[] = [
-    {
-      id: 'p1',
-      label: 'Kurt',
-      imageUrl: '../../assets/plant.jpg' 
-      
-    
-    },
-    {
-    id:'p2',
-    label: 'Dman',
-    imageUrl: '../../assets/plant.jpg' 
-    },
-    {
-      id: 'p3',
-      label: 'Priscilla',
-      imageUrl: '../../assets/plant.jpg' 
-      
-    
-    },
-    ]
-  constructor() { }
+  })
 
-  getAllPlants(){
-    return [...this.plants];
+}
+/*   getAllPlants(){
+
+    this.dbService.getByKey('plants', 57).subscribe((plants) =>{
+      console.log(plants)
+    })
+    return this.allplants;
   }
-  getPlant(plantId: string){
-    return{
-      ...this.plants.find(plant => {
-        return plant.id === plantId;
-      })
-    }
-  }
+   */
+ 
 }

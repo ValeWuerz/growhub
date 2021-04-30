@@ -10,12 +10,16 @@
 <ion-content id="main">
   
   <ion-button shape="round" id="stuck" (click)="plantadd()"><ion-icon   name="add-outline"></ion-icon></ion-button><br><br>
-  <input type="file" id="input" >
+  <div *ngIf="creating">
+    <input type="text" id="pflanzenname" [(ngModel)]="pflanzenname" placeholder="Pflanzenname">
+  <input type="file" id="input">
+
+</div>
 <ion-list>
   
   <ion-item *ngFor="let plant of plants" [routerLink]="['./', plant.id]">
     <ion-img [src]="plant.imageUrl"></ion-img>
-  <ion-label id="lab">{{plant.label}}</ion-label>
+  <ion-label id="lab">{{plant.name}}</ion-label>
   </ion-item>
   <ion-item>
     <img id="bilder" src="" height="200" alt="Image preview..." >
