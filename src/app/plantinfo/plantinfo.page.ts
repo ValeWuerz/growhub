@@ -23,7 +23,7 @@ rendered: false| true
       }
       const plantId = paramMap.get('plantId');
       console.log(plantId)
-      this.dbService.getByKey('people', Number(plantId)).subscribe((plant) => {
+      this.dbService.getByKey('plants', Number(plantId)).subscribe((plant) => {
         this.loadedPlant= plant;
         console.log(plant)
         console.log(plantId)
