@@ -12,7 +12,7 @@ export class Tab1Page implements OnInit {
   creating: true | false;
 plants: PlantModel[];
 pflanzenname: string="Pflanzenname"
-pflanzennamen: Array<string>
+pflanzennamen: Array<string>=[]
 file: File
   constructor(private plantservice: PlantsService, private dbService: NgxIndexedDBService) {
     this.creating=false;
@@ -20,8 +20,8 @@ file: File
 
   ngOnInit(){
 
-this.dbService.getAll('people').subscribe((people) => {
-  this.plants=people;
+this.dbService.getAll('plants').subscribe((plant) => {
+  this.plants=plant;
   console.log(this.plants)
 })
 
@@ -79,10 +79,13 @@ fileInput.onchange = () => {
   const file= <HTMLInputElement>document.getElementById('input');
   this.plantservice.addplant(this.pflanzenname,  file.files[0]);
   this.pflanzenname="Pflanzenname"
+  
  
     alert("adden")
-    this.dbService.getAll('people').subscribe((people) => {
-      people.forEach(element => this.pflanzennamen.push(element['name']));
+    this.dbService.getAll('plants').subscribe((plant) => {
+      console.log(plant)
+
+      plant.forEach(element => this.pflanzennamen.push(element['name']));
       console.log(this.pflanzennamen)
     });
  }
