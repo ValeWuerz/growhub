@@ -12,11 +12,13 @@ allplants: Observable<PlantModel>;
   loaded: Object={}
   constructor(private dbService: NgxIndexedDBService) { }
 addplant(pflanzenname, bild){
+
   this.dbService.add('plants',{
 name: pflanzenname,
 bild: bild
 
   })
+ 
 
 }
 /*   getAllPlants(){

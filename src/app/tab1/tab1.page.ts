@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlantsService } from '../plants.service';
 import { PlantModel } from './plant.model';
 import { NgxIndexedDBService} from 'ngx-indexed-db';
+import { TestBed } from '@angular/core/testing';
 
 @Component({
   selector: 'app-tab1',
@@ -77,18 +78,45 @@ fileInput.onchange = () => {
  if(this.pflanzenname!="Pflanzenname"){
 
   const file= <HTMLInputElement>document.getElementById('input');
-  this.plantservice.addplant(this.pflanzenname,  file.files[0]);
-  this.pflanzenname="Pflanzenname"
-  
+  let mySrc;
+  const reader = new FileReader();
+  reader.readAsDataURL(file.files[0]); 
+  reader.onloadend =  () =>  {
+     // result includes identifier 'data:image/png;base64,' plus the base64 data
+     mySrc = reader.result;    
+     var test= new Promise<void>((resolve, reject) => {
+       this.plantservice.addplant(this.pflanzenname,  mySrc);
+     resolve( this.normalise())
+     }) 
+
+
+  }  
+
  
-    alert("adden")
-    this.dbService.getAll('plants').subscribe((plant) => {
+
+  this.dbService.getAll('plants').subscribe((plant) => {
       console.log(plant)
 
       plant.forEach(element => this.pflanzennamen.push(element['name']));
       console.log(this.pflanzennamen)
     });
+       
+
  }
   }
+  
+  
+   normalise(){
+    
+      this.pflanzenname="Pflanzenname"
+      setTimeout(() => {
+        this.dbService.getAll('plants').subscribe((plant) => {
+          this.plants=plant;
+          console.log(this.plants)
+        })
+      }, 1);
+ 
+    }
+  
   
 }
