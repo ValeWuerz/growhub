@@ -8,6 +8,31 @@ ion-content{
   align-items: flex-end;
   z-index: 0;
 }
+#icos{
+  height: 2rem;
+  width: 2rem;
+  z-index: 20;
+}
+#iconelect{
+  float:left;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
+}
+#input{
+  height: 40%;
+  position: absolute;
+  background-color: white;
+  z-index: 50;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20%;
+  width: 50%;
+  text-align: center;
+}
 #name{
 
     display: flex;
