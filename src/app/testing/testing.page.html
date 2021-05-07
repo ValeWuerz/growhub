@@ -5,11 +5,11 @@
 </ion-header>
 
 <ion-content >
-<div *ngFor="let icon of icons" id="block">
-  <ion-fab-button id="fab" color="primary">
+<div >
+  <ion-fab-button *ngFor="let icon of icons, let i=index" [id]="i" (click)="ausgabe(i)" >
     <ion-icon  name="leaf-outline"></ion-icon>
     </ion-fab-button>
-  02.12.2021
+  {{i}}
 
 </div>
 

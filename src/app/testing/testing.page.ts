@@ -11,5 +11,10 @@ icons: Array<string>=["testen","nochmal","f","de","sd"]
 
   ngOnInit() {
   }
-
+ausgabe(i){
+  document.getElementById(i).style.borderColor="red"
+  document.getElementById(i).style.borderStyle="solid"
+  document.getElementById(i).style.borderRadius="100%"
+  
+}
 }
