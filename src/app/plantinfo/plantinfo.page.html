@@ -4,10 +4,35 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<div >
-  {{loadedPlant.name}}
-  <ion-img [src]="loadedPlant.bild"></ion-img>
-  
+<ion-content id="back" >
+<div id="name">
 </div>
+  <ion-slides id="slides" [options]="slideOpts">
+
+    <ion-slide id="slide" *ngFor="let slide of slides">
+<div id="container">
+<div id="fotowrap">
+  <img id="foto" [src]="loadedPlant.bild">
+</div>
+  <div id="timeline">
+
+  <div *ngFor="let event of slide.events; let i=index;"  id="block">
+    <ion-fab-button id="fab" color="primary">
+      <ion-icon  [name]="slide.icon[i]"></ion-icon>
+      </ion-fab-button>
+  {{event}}
+
+  </div>
+  <hr (click)="info()"/>
+  <ion-icon id="adden" name="add-circle-outline"></ion-icon>
+</div>
+<ion-button>Event hinzufügen</ion-button>
+
+</div>
+  
+
+</ion-slide>
+
+</ion-slides>
+
 </ion-content>

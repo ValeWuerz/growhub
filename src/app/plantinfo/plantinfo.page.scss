@@ -1,0 +1,77 @@
+
+ion-content{
+  --background: none;
+  background-image: url('/assets/hintergrund.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: flex-end;
+  z-index: 0;
+}
+#name{
+
+    display: flex;
+  align-items: center;
+   justify-content: center;
+   font-size: larger;
+}
+#foto{
+    width: 70%;
+    height: 70%;
+    border-radius: 20%;
+margin-top: 3%;
+
+}
+#fotowrap{
+  display: flex;
+  
+  justify-content: center;
+}
+hr {
+  
+    width: 100%;
+    height: 0.25rem;
+    
+    background-color: #154a70;
+    position: absolute;
+}
+
+
+#fab{
+  height: 2rem;
+  width: 2rem;
+  z-index: 20;
+}
+#block{
+  float:left;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
+}
+#adden{
+  z-index: 30;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  border-radius: 20%;
+}
+
+
+/* #container{
+  display: grid;
+  
+  grid-template-areas:
+  
+    'foto foto foto foto foto'
+    'line line line line line';
+   
+} */
+#slides{
+  height: 80%;
+ 
+}
+#slide{
+  display: flex;
+  align-items: flex-start
+}
