@@ -16,10 +16,10 @@
 </div>
   <div id="timeline">
 
-  <div *ngFor="let event of slide.events; let i=index;"  id="block">
+  <div *ngFor="let event of loadedPlant.events; let i=index;"  id="block">
     
-    <ion-fab-button id="fab" color="primary">
-      <ion-icon  [name]="slide.icon[i]"></ion-icon>
+    <ion-fab-button class="icos" color="secondary">
+      <ion-icon  [name]="loadedPlant.eventicon[i]"></ion-icon>
       </ion-fab-button>
   {{event}}
 
@@ -39,16 +39,20 @@
 <div *ngIf="input" id="input">
   
   <label >New Event</label><br><br><br>
-  <input type="date"><br><br><br>
-  <input type="textbox" placeholder="event"><br><br><br>
+  <input id="datum" type="date"><br><br><br>
+  <textarea type="textbox" id="event" placeholder="event"></textarea><br>
   <!-- <div id="iconelect" *ngFor="let icon of icons; let x=index;">
   <ion-fab-button id="icos">
     <ion-icon  [name]="icon"></ion-icon>
   </ion-fab-button>
 </div> -->
-<ion-select placeholder="Select One">
-  <ion-select-option value="f"><ion-icon  name="flower-outline"></ion-icon></ion-select-option>
-  <ion-select-option value="m">Male</ion-select-option>
-</ion-select>
+<div id="markiere">
+  <ion-fab-button class="icos" color="secondary" *ngFor="let icon of icons, let i=index" [id]="i" (click)="markiere(i)" >
+    <ion-icon  [name]="icons[i]"></ion-icon>
+    </ion-fab-button>
+  {{i}}
+</div>
+<ion-button id="erstellen" (click)="eventerstellen(i)" color="secondary">Event erstellen</ion-button>
+
 </div>
 </ion-content>

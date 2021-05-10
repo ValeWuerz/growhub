@@ -6,7 +6,7 @@
 
 <ion-content >
 <div >
-  <ion-fab-button *ngFor="let icon of icons, let i=index" [id]="i" (click)="ausgabe(i)" >
+  <ion-fab-button id="icon" *ngFor="let icon of icons, let i=index" [id]="i" (click)="ausgabe(i)" >
     <ion-icon  name="leaf-outline"></ion-icon>
     </ion-fab-button>
   {{i}}

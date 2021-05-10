@@ -14,7 +14,11 @@ allplants: Observable<PlantModel>;
 addplant(pflanzenname, bild){
   this.dbService.add('plants',{
 name: pflanzenname,
-bild: bild
+bild: bild,
+events: [],
+eventicon: [],
+eventdate: [],
+
 
   })
  
