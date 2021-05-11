@@ -6,11 +6,12 @@
 
 <ion-content >
 <div >
-  <ion-fab-button id="icon" *ngFor="let icon of icons, let i=index" [id]="i" (click)="ausgabe(i)" >
+  <ion-fab-button (click)="presentPopover()" id="icon"  *ngFor="let icon of icons, let i=index" [id]="i"  >
     <ion-icon  name="leaf-outline"></ion-icon>
     </ion-fab-button>
   {{i}}
 
 </div>
+
 
 </ion-content>

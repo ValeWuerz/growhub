@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { PopoverController } from '@ionic/angular';
 @Component({
   selector: 'app-testing',
   templateUrl: './testing.page.html',
@@ -7,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestingPage implements OnInit {
 icons: Array<string>=["testen","nochmal","f","de","sd"]
-  constructor() { }
+  constructor(public popoverController: PopoverController) { }
 
   ngOnInit() {
   }
+ 
 ausgabe(i){
   this.icons.forEach(element => {
    let alle= this.icons.indexOf(element)

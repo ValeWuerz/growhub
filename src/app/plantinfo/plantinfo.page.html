@@ -9,7 +9,7 @@
 </div>
   <ion-slides id="slides" [options]="slideOpts">
 
-    <ion-slide id="slide" *ngFor="let slide of slides">
+    <ion-slide id="slide" *ngFor="let slide of slides, let s=index">
 <div id="container">
 <div id="fotowrap">
   <img id="foto" [src]="loadedPlant.bild">
@@ -18,10 +18,11 @@
 
   <div *ngFor="let event of loadedPlant.events; let i=index;"  id="block">
     
-    <ion-fab-button class="icos" color="secondary">
+    <ion-fab-button (click)="showevent(i)" class="icos" color="secondary" >
+      
       <ion-icon  [name]="loadedPlant.eventicon[i]"></ion-icon>
       </ion-fab-button>
-  {{event}}
+  {{loadedPlant.eventdate[i]|date:'dd.MM'}}
 
   </div>
 
@@ -37,7 +38,7 @@
 
 </ion-slides>
 <div *ngIf="input" id="input">
-  
+  <div id="ix" (click)="addevent()">x</div>
   <label >New Event</label><br><br><br>
   <input id="datum" type="date"><br><br><br>
   <textarea type="textbox" id="event" placeholder="event"></textarea><br>
@@ -55,4 +56,10 @@
 <ion-button id="erstellen" (click)="eventerstellen(i)" color="secondary">Event erstellen</ion-button>
 
 </div>
+<div *ngIf="eventclicked" id="showevent"> 
+  Das ist ein test
+  {{loadedPlant.events[elected]}}
+  <ion-button (click)="delevent()">Event Löschen</ion-button>
+  <div id="ix" (click)="showevent()">x</div>
+  </div>
 </ion-content>

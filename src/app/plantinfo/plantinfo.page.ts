@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { PlantsService } from '../plants.service';
 import { PlantModel } from '../tab1/plant.model';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-plantinfo',
@@ -14,11 +15,13 @@ export class PlantinfoPage implements OnInit {
 loadedPlant: PlantModel = {};
 rendered: false| true
 input: false|true=false
+eventclicked: false|true=false
 slides: Array<Object>= [
   {bild: "../../assets/plant.jpg", events: ["01.02."], icon: ["leaf-outline"] },
   {bild: "../../assets/plant.jpg", events: ["14.02.","20.02","test", "test","test"],icon: ["leaf-outline","logo-bitbucket"]}
 ]
 ausgewahlt: number
+elected: number
 events: Array<String>=["14.02.","","","",""]
 slideOpts = {
   initialSlide: 2,
@@ -44,9 +47,24 @@ slideOpts = {
       
     });
   }
-  info(){
-    alert("hier steht die info")
-  }
+ showevent(i){
+   
+  this.eventclicked=!this.eventclicked;
+  this.elected=i;
+ }
+ delevent(){
+  this.loadedPlant.events.splice(this.elected,1);
+  this.loadedPlant.eventicon.splice(this.elected,1);
+  this.loadedPlant.eventdate.splice(this.elected,1);
+  this.dbService.update('plants', {
+    ...this.loadedPlant,
+    
+  })
+  this.eventclicked=!this.eventclicked;
+
+ }
+  
+  
   markiere(i){
     this.icons.forEach(element => {
       let alle= this.icons.indexOf(element)
