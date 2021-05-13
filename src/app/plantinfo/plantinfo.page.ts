@@ -74,10 +74,10 @@ this.showsavepic=false;
     }  
   }
  showevent(s,i){
-   
-  this.eventclicked=!this.eventclicked;
-  this.elected=i;
+   this.elected=i;
   this.wisch=s
+  this.eventclicked=!this.eventclicked;
+  
 
  }
  delevent(){

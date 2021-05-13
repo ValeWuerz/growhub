@@ -24,7 +24,6 @@
   
   <img id="foto" [src]="loadedPlant.bilder[s]">
 </div>
-  <div id="timeline">
 
   <div *ngFor="let event of loadedPlant.events[s]; let i=index;"  id="block">
     
@@ -34,7 +33,7 @@
       </ion-fab-button>
   {{loadedPlant.eventdate[s][i]|date:'dd.MM'}}
 
-  </div>
+  
 
   
 
