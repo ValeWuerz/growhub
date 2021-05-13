@@ -15,9 +15,10 @@ addplant(pflanzenname, bild){
   this.dbService.add('plants',{
 name: pflanzenname,
 bild: bild,
-events: [],
-eventicon: [],
-eventdate: [],
+bilder: [bild],
+events: [[],[],[],[],[],[]],
+eventicon: [[],[],[],[],[],[]],
+eventdate: [[],[],[],[],[],[]],
 
 
   })

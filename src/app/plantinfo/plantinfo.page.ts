@@ -16,7 +16,9 @@ loadedPlant: PlantModel = {};
 rendered: false| true
 input: false|true=false
 eventclicked: false|true=false
+slideadd: false|true=true
 wisch: number
+showsavepic: false |true=false;
 slides: Array<Object>= [
   {bild: "../../assets/plant.jpg", events: ["01.02."], icon: ["leaf-outline"] },
   {bild: "../../assets/plant.jpg", events: ["14.02.","20.02","test", "test","test"],icon: ["leaf-outline","logo-bitbucket"]}
@@ -48,10 +50,35 @@ slideOpts = {
       
     });
   }
- showevent(i){
+  addslide(){
+    this.showsavepic=true;
+  }
+  savepic(){
+this.showsavepic=false;
+
+    const file= <HTMLInputElement>document.getElementById('file');
+    let mySrc;
+    const reader = new FileReader();
+    reader.readAsDataURL(file.files[0]); 
+    reader.onloadend =  () =>  {
+       // result includes identifier 'data:image/png;base64,' plus the base64 data
+       mySrc = reader.result;    
+       this.loadedPlant.bilder.push(mySrc)
+       this.dbService.update('plants', {
+        ...this.loadedPlant,
+        
+      })
+     
+  
+  
+    }  
+  }
+ showevent(s,i){
    
   this.eventclicked=!this.eventclicked;
   this.elected=i;
+  this.wisch=s
+
  }
  delevent(){
   this.loadedPlant.events[this.wisch].splice(this.elected,1);

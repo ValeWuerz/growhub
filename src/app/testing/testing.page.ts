@@ -7,11 +7,17 @@ import { PopoverController } from '@ionic/angular';
 })
 export class TestingPage implements OnInit {
 icons: Array<string>=["testen","nochmal","f","de","sd"]
+arr: Array<Array<string>>=[[],[],[],[],[],[]]
+counter: number=0;
   constructor(public popoverController: PopoverController) { }
 
   ngOnInit() {
   }
- 
+ adden(){
+   this.counter=this.counter+1;
+   this.arr[1].push(this.counter.toString())
+   console.log(this.arr)
+ }
 ausgabe(i){
   this.icons.forEach(element => {
    let alle= this.icons.indexOf(element)

@@ -3,7 +3,8 @@ export interface PlantModel {
     events?: Array<Array<string>>
     eventicon?:Array<Array<string>>
     eventdate?:Array<Array<string>>
-    Bild?: string;
+    bild?: string;
+    bilder?: Array<string>
     id?: string;
 
 }

@@ -9,24 +9,33 @@
 </div>
   <ion-slides id="slides" [options]="slideOpts">
 
-    <ion-slide id="slide" *ngFor="let slide of slides, let s=index">
+    <ion-slide id="slide" *ngFor="let slide of loadedPlant.bilder, let s=index">
 <div id="container">
 <div id="fotowrap">
-  <img id="foto" [src]="loadedPlant.bild">
+<hr (click)="addevent(s)"/>
+
+<!--   <ion-fab-button id="addslide" (click)="addslide()"><label  for="file">ADD</label></ion-fab-button>
+    <ion-fab-button id="addslide" *ngIf="showsavepic" (click)="savepic()">submit</ion-fab-button>
+
+  <div id="slideadd" *ngIf="slideadd">
+    <input type="file" id="file"  >
+    
+  </div> -->
+  
+  <img id="foto" [src]="loadedPlant.bilder[s]">
 </div>
   <div id="timeline">
 
- <!--  <div *ngFor="let event of loadedPlant.events[1]; let i=index;"  id="block">
+  <div *ngFor="let event of loadedPlant.events[s]; let i=index;"  id="block">
     
-    <ion-fab-button (click)="showevent(i)" class="icos" color="secondary" >
+    <ion-fab-button (click)="showevent(s,i)" class="icos" color="secondary" >
       
       <ion-icon  [name]="loadedPlant.eventicon[s][i]"></ion-icon>
       </ion-fab-button>
   {{loadedPlant.eventdate[s][i]|date:'dd.MM'}}
 
-  </div> -->
+  </div>
 
-  <hr (click)="addevent(s)"/>
   
 
 </div>
@@ -57,8 +66,8 @@
 
 </div>
 <div *ngIf="eventclicked" id="showevent"> 
-  Das ist ein test
-  {{loadedPlant.events[elected]}}
+  
+  {{loadedPlant.events[wisch][elected]}}
   <ion-button (click)="delevent()">Event Löschen</ion-button>
   <div id="ix" (click)="showevent()">x</div>
   </div>
