@@ -16,6 +16,7 @@ loadedPlant: PlantModel = {};
 rendered: false| true
 input: false|true=false
 eventclicked: false|true=false
+wisch: number
 slides: Array<Object>= [
   {bild: "../../assets/plant.jpg", events: ["01.02."], icon: ["leaf-outline"] },
   {bild: "../../assets/plant.jpg", events: ["14.02.","20.02","test", "test","test"],icon: ["leaf-outline","logo-bitbucket"]}
@@ -53,9 +54,9 @@ slideOpts = {
   this.elected=i;
  }
  delevent(){
-  this.loadedPlant.events.splice(this.elected,1);
-  this.loadedPlant.eventicon.splice(this.elected,1);
-  this.loadedPlant.eventdate.splice(this.elected,1);
+  this.loadedPlant.events[this.wisch].splice(this.elected,1);
+  this.loadedPlant.eventicon[this.wisch].splice(this.elected,1);
+  this.loadedPlant.eventdate[this.wisch].splice(this.elected,1);
   this.dbService.update('plants', {
     ...this.loadedPlant,
     
@@ -79,8 +80,10 @@ slideOpts = {
 this.ausgewahlt=i;
     
   }
-  addevent(){
+  addevent(s){
   this.input=!this.input
+  this.wisch=s
+  console.log(this.wisch)
   /*   this.dbService
   .update('plants', {
     ...this.loadedPlant,
@@ -91,11 +94,15 @@ this.ausgewahlt=i;
   }); */
   }
   eventerstellen(i){
+    console.log(this.wisch)
+
+    console.log(this.loadedPlant.events[Number(this.wisch)])
     let inputElement= <HTMLInputElement>document.getElementById("event");
     let datum= <HTMLInputElement>document.getElementById("datum");
-    this.loadedPlant.events.push(inputElement.value);
-    this.loadedPlant.eventicon.push(this.icons[this.ausgewahlt]);
-    this.loadedPlant.eventdate.push(datum.value);
+    console.log(this.loadedPlant.events[this.wisch])
+    this.loadedPlant.events[this.wisch].push(inputElement.value);
+    this.loadedPlant.eventicon[this.wisch].push(this.icons[this.ausgewahlt]);
+    this.loadedPlant.eventdate[this.wisch].push(datum.value);
 
     this.dbService.update('plants', {
     ...this.loadedPlant,

@@ -16,17 +16,17 @@
 </div>
   <div id="timeline">
 
-  <div *ngFor="let event of loadedPlant.events; let i=index;"  id="block">
+ <!--  <div *ngFor="let event of loadedPlant.events[1]; let i=index;"  id="block">
     
     <ion-fab-button (click)="showevent(i)" class="icos" color="secondary" >
       
-      <ion-icon  [name]="loadedPlant.eventicon[i]"></ion-icon>
+      <ion-icon  [name]="loadedPlant.eventicon[s][i]"></ion-icon>
       </ion-fab-button>
-  {{loadedPlant.eventdate[i]|date:'dd.MM'}}
+  {{loadedPlant.eventdate[s][i]|date:'dd.MM'}}
 
-  </div>
+  </div> -->
 
-  <hr (click)="addevent()"/>
+  <hr (click)="addevent(s)"/>
   
 
 </div>
