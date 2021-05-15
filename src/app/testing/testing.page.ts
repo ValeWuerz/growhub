@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-testing',
   templateUrl: './testing.page.html',
@@ -13,10 +14,11 @@ counter: number=0;
 
   ngOnInit() {
   }
+  synchron(){
+   
+  }
  adden(){
-   this.counter=this.counter+1;
-   this.arr[1].push(this.counter.toString())
-   console.log(this.arr)
+   alert("test")
  }
 ausgabe(i){
   this.icons.forEach(element => {

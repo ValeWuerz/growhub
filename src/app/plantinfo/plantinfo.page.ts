@@ -53,10 +53,33 @@ slideOpts = {
       })
       
     });
+
   }
  
   addslide(){
     this.showsavepic=true;
+  }
+  fileinput(){
+    document.getElementById('file').click();
+
+
+  }
+  delslide(s){
+    console.log(s)
+    this.loadedPlant.bilder.splice(s, 1)
+    console.log(this.loadedPlant.bilder)
+    this.loadedPlant.events.splice(s,1);
+    this.loadedPlant.events.push([]);
+    this.loadedPlant.eventicon.splice(s,1);
+    this.loadedPlant.eventicon.push([]);
+    this.loadedPlant.eventdate.splice(s,1);
+    this.loadedPlant.eventdate.push([]);
+    this.dbService.update('plants', {
+      ...this.loadedPlant,
+      
+      
+    })
+
   }
   savepic(){
 this.showsavepic=false;
@@ -65,9 +88,10 @@ this.showsavepic=false;
     let mySrc;
     const reader = new FileReader();
     reader.readAsDataURL(file.files[0]); 
-    reader.onloadend =   () =>  {
+    reader.onloadend = () =>   {
        // result includes identifier 'data:image/png;base64,' plus the base64 data
        mySrc = reader.result;    
+
        this.loadedPlant.bilder.push(mySrc)
        this.dbService.update('plants', {
         ...this.loadedPlant,

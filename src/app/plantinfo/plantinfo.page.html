@@ -9,20 +9,19 @@
 </div>
   <ion-slides id="slides" #slides [options]="slideOpts">
 
-    <ion-slide id="slide" *ngFor="let slide of loadedPlant.bilder, let s=index">
+    <ion-slide  id="slide" *ngFor="let slide of loadedPlant.bilder, let s=index">
 <div id="container">
 <div id="fotowrap">
 <hr (click)="addevent(s)"/>
 
-  <ion-fab-button id="addslide" (click)="addslide()"><label  for="file">ADD</label></ion-fab-button>
-    <ion-fab-button id="addslide" *ngIf="showsavepic" (click)="savepic()">submit</ion-fab-button>
+ 
 
   <div id="slideadd" *ngIf="slideadd">
-    <input type="file" id="file"  >
+    <input type="file" id="file" (change)="savepic()"  >
     
   </div>
-  
-  <img id="foto" [src]="loadedPlant.bilder[s]">
+  <ion-fab-button *ngIf="loadedPlant.bilder.length>1" (click)="delslide(s)" id="delslide"><ion-icon name="close-outline" ></ion-icon></ion-fab-button>
+  <img id="foto" [src]="loadedPlant.bilder[s]" (click)="fileinput()" >
 </div>
 
   <div *ngFor="let event of loadedPlant.events[s]; let i=index;"  id="block">
@@ -70,5 +69,4 @@
   <ion-button (click)="delevent()">Event Löschen</ion-button>
   <div id="ix" (click)="showevent()">x</div>
   </div>
-  <ion-button (click)="sliding()">sliding</ion-button>
 </ion-content>

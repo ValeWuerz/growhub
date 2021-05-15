@@ -12,7 +12,8 @@
   {{i}}
 
 </div>
-<ion-button (click)="adden()">adden</ion-button>
-<input type="file" id="file" /> 
+<ion-button (click)="adden()" (keydown)="adden()">adden</ion-button>
+<input type="text" id="file" /> 
 <label for="file" id="label">Upload</label>
+<input type="text" (change)="adden()">
 </ion-content>
