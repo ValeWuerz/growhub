@@ -1,16 +1,19 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit, ViewChild, AfterContentInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { PlantsService } from '../plants.service';
 import { PlantModel } from '../tab1/plant.model';
 import { PopoverController } from '@ionic/angular';
-
+import { IonSlides } from '@ionic/angular';
+import { observable } from 'rxjs';
 @Component({
   selector: 'app-plantinfo',
   templateUrl: './plantinfo.page.html',
   styleUrls: ['./plantinfo.page.scss'],
 })
+
 export class PlantinfoPage implements OnInit {
+  @ViewChild('slides', { static: false }) ionSlides: IonSlides;
   icons: Array<string>=["leaf-outline","logo-bitbucket", "flower-outline" ]
 loadedPlant: PlantModel = {};
 rendered: false| true
@@ -19,7 +22,7 @@ eventclicked: false|true=false
 slideadd: false|true=true
 wisch: number
 showsavepic: false |true=false;
-slides: Array<Object>= [
+slidess: Array<Object>= [
   {bild: "../../assets/plant.jpg", events: ["01.02."], icon: ["leaf-outline"] },
   {bild: "../../assets/plant.jpg", events: ["14.02.","20.02","test", "test","test"],icon: ["leaf-outline","logo-bitbucket"]}
 ]
@@ -27,14 +30,14 @@ ausgewahlt: number
 elected: number
 events: Array<String>=["14.02.","","","",""]
 slideOpts = {
-  initialSlide: 2,
+  initialSlide: 0,
   speed: 400
 };
   constructor(private dbService: NgxIndexedDBService, private activatedRoute: ActivatedRoute, private plantservice: PlantsService) {
-   }
+  }
 
   ngOnInit() {
-  
+
     this.activatedRoute.paramMap.subscribe(paramMap => {
       if (!paramMap.has('plantId')){
         //redirect
@@ -44,12 +47,14 @@ slideOpts = {
       console.log(plantId)
       this.dbService.getByKey('plants', Number(plantId)).subscribe((plant) => {
         this.loadedPlant= plant;
-        console.log(plant)
+        this.ionSlides.slideTo(this.loadedPlant.bilder.length-1, 300)
+         console.log(plant)
         console.log(plantId)
       })
       
     });
   }
+ 
   addslide(){
     this.showsavepic=true;
   }
@@ -60,15 +65,18 @@ this.showsavepic=false;
     let mySrc;
     const reader = new FileReader();
     reader.readAsDataURL(file.files[0]); 
-    reader.onloadend =  () =>  {
+    reader.onloadend =   () =>  {
        // result includes identifier 'data:image/png;base64,' plus the base64 data
        mySrc = reader.result;    
        this.loadedPlant.bilder.push(mySrc)
        this.dbService.update('plants', {
         ...this.loadedPlant,
         
-      })
-     
+        
+      }).subscribe((key) => {
+        this.ionSlides.slideTo(this.loadedPlant.bilder.length-1)
+
+      });
   
   
     }  

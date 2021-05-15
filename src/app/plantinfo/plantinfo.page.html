@@ -7,7 +7,7 @@
 <ion-content id="back" >
 <div id="name">
 </div>
-  <ion-slides id="slides" [options]="slideOpts">
+  <ion-slides id="slides" #slides [options]="slideOpts">
 
     <ion-slide id="slide" *ngFor="let slide of loadedPlant.bilder, let s=index">
 <div id="container">
@@ -70,4 +70,5 @@
   <ion-button (click)="delevent()">Event Löschen</ion-button>
   <div id="ix" (click)="showevent()">x</div>
   </div>
+  <ion-button (click)="sliding()">sliding</ion-button>
 </ion-content>
