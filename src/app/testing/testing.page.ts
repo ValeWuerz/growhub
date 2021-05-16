@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { Observable } from 'rxjs';
+import interact from 'interactjs'
+
 @Component({
   selector: 'app-testing',
   templateUrl: './testing.page.html',
@@ -13,8 +15,36 @@ counter: number=0;
   constructor(public popoverController: PopoverController) { }
 
   ngOnInit() {
+    this.dragging();
+
   }
-  synchron(){
+  
+  dragging(){
+    const position = { x: 0, y: 0 }
+  
+   interact('.draggable').draggable( 
+     {
+      
+      listeners: {
+        
+        start (event)  {
+          console.log(event.type, event.target)
+          
+        },
+        move (event)  {
+          position.x += event.dx
+          position.y += event.dy
+  
+    
+          event.target.style.transform =
+            `translate(${position.x}px, ${position.y}px)`
+            
+        },
+      }
+    })
+  
+  }
+  position(){
    
   }
  adden(){
