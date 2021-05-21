@@ -23,6 +23,25 @@
   white-space: nowrap;
   width: 1px;
 }
+@keyframes mymove {
+from {transform:rotate(0deg)}
+to {transform:rotate(360deg)}
+  
+}
+#tomate{
+  height: 3rem;
+  width: auto;
+  touch-action: none;
+  user-select: none;
+  border-radius: 100%;
+  z-index: 100;
+  position: absolute;
+  top: 10rem;
+  left: 2rem;
+  animation: mymove 2s infinite;
+ 
+}
+
 #label{
   background-color: blue;
   border-radius: 20%;

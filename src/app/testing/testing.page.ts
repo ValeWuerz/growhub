@@ -2,7 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import interact from 'interactjs'
+import { PhotoService } from '../services/photo.service';
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import{AppModule} from '../app.module'
+import { NgxIndexedDBService } from 'ngx-indexed-db';
 
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import { environment } from 'src/environments/environment';
+import { Photo } from '../photo';
+
+if (environment.production) {
+  enableProdMode();
+}
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err => console.log(err));
+  defineCustomElements(window);
 @Component({
   selector: 'app-testing',
   templateUrl: './testing.page.html',
@@ -12,11 +28,28 @@ export class TestingPage implements OnInit {
 icons: Array<string>=["testen","nochmal","f","de","sd"]
 arr: Array<Array<string>>=[[],[],[],[],[],[]]
 counter: number=0;
-  constructor(public popoverController: PopoverController) { }
+photo: Photo[] = this.photoService.photos;
+base: string
+
+  constructor(public popoverController: PopoverController, public photoService: PhotoService) { }
 
   ngOnInit() {
     this.dragging();
+  
+    
+  }
+  
+  addPhotoToGallery() {
+    this.photoService.addNewToGallery("test").then( (value) => {
+      this.show()
+     }, function(reason) {
+     // rejection
+   });
+    
+  }
 
+  show(){
+    this.base=this.photoService.base
   }
   
   dragging(){
