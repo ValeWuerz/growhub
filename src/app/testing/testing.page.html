@@ -5,6 +5,13 @@
 </ion-header>
 
 <ion-content >
+<ion-button (click)="show()">show</ion-button>
+<img src="{{base}}" alt="">
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="addPhotoToGallery()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 <div >
   <ion-fab-button (click)="presentPopover()" id="icon"  *ngFor="let icon of icons, let i=index" [id]="i"  >
     <ion-icon  name="leaf-outline"></ion-icon>
@@ -16,4 +23,5 @@
 <input type="text" id="file" /> 
 <label for="file" id="label">Upload</label>
 <input type="text" (change)="adden()">
+<img src="../../assets/tomatesvg.svg" id="tomate" alt="" class="draggable" (click)="position()">
 </ion-content>

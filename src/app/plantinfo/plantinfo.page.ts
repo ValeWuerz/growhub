@@ -6,6 +6,7 @@ import { PlantModel } from '../tab1/plant.model';
 import { PopoverController } from '@ionic/angular';
 import { IonSlides } from '@ionic/angular';
 import { observable } from 'rxjs';
+import interact from 'interactjs';
 @Component({
   selector: 'app-plantinfo',
   templateUrl: './plantinfo.page.html',
@@ -37,6 +38,7 @@ slideOpts = {
   }
 
   ngOnInit() {
+    this.dragging();
 
     this.activatedRoute.paramMap.subscribe(paramMap => {
       if (!paramMap.has('plantId')){
@@ -55,7 +57,35 @@ slideOpts = {
     });
 
   }
- 
+   dragging(){
+
+    const position = { x: 0, y: 0 }
+  
+   interact('.draggable').draggable(      {
+      
+      listeners: {
+        
+        start (event)  {
+          console.log(event.type, event.target)
+          
+        },
+        move (event)  {
+          position.x += event.dx
+          position.y += event.dy
+  
+    
+          event.target.style.transform =
+            `translate(${position.x}px, ${position.y}px)`
+            
+        },
+      }
+    })
+    
+  interact.on('dragend', (event)=> {
+   this.position();
+   
+  })
+  }
   addslide(){
     this.showsavepic=true;
   }
@@ -63,6 +93,33 @@ slideOpts = {
     document.getElementById('file').click();
 
 
+  }
+  position(){
+    let element= document.getElementById('tomate')
+    let positiony= window.scrollY + element.getBoundingClientRect().top
+    let positionx= window.scrollX + element.getBoundingClientRect().left
+    let backx= positionx - 10;
+    let backy= positiony - 165;
+element.animate([
+  // keyframes
+  { transform: `translateY(0px)`,  },
+  /* { transform: `translateX(-10px)` },
+  { transform: `translateY(${positiony}px)`,  },
+  { transform: `translateY(-10px)`,  }, */
+
+
+], {
+  // timing options
+  duration: 700,
+  
+}).finished.then(function(value) {
+/*  location.reload(); */
+  // fulfillment
+/*   element.style.transform="none" */
+ }, function(reason) {
+ // rejection
+});
+/* alert('Element is ' + positionx + '/' + positiony + ' vertical pixels from <body>'); */
   }
   delslide(s){
     console.log(s)
