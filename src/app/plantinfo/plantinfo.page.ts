@@ -91,7 +91,11 @@ slideOpts = {
     this.showsavepic=true;
   }
   fileinput(){
-this.photoService.addNewToGallery(this.loadedPlant)
+this.photoService.addNewToGallery(this.loadedPlant).then((value) =>  {
+  this.photoService.saveit()
+ }, function(reason) {
+ // rejection
+});
 
   }
   position(){

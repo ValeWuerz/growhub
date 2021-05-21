@@ -29,17 +29,21 @@ export class PhotoService {
     const savedImageFile = await this.savePicture(capturedPhoto);
     this.photos.unshift(savedImageFile);
   }
+  saveit(){
+    console.log(this.loadedPlant)
+    this.dbService.update('plants',{
+...this.loadedPlant
+    })
+  }
   private async savePicture(cameraPhoto: CameraPhoto) {
     // Convert photo to base64 format, required by Filesystem API to save
-    const base64Data = await this.readAsBase64(cameraPhoto);
+    const base64Data = await this.readAsBase64(cameraPhoto)
   
     // Write the file to the data directory
     const fileName = new Date().getTime() + '.jpeg';
     this.loadedPlant.bilder.push(base64Data)
-    this.dbService.add('plants',{
-      ...this.loadedPlant
-      
-        })
+    console.log(this.loadedPlant)
+   
    /*  const savedFile = await Filesystem.writeFile({
       path: fileName,
       data: base64Data,
